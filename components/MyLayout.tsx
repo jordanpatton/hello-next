@@ -1,4 +1,10 @@
+import { NextPage } from 'next';
+
 import Header from './Header';
+
+interface ILayoutProps {
+    children: React.ReactNode;
+}
 
 const layoutStyle = {
     margin: 20,
@@ -6,7 +12,7 @@ const layoutStyle = {
     border: '1px solid #DDD',
 };
 
-const Layout = props => (
+const Layout: NextPage<ILayoutProps> = props => (
     <div style={layoutStyle}>
         <Header />
         {props.children}

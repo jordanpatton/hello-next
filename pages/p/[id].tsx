@@ -1,9 +1,10 @@
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import Markdown from 'react-markdown';
 
 import Layout from '../../components/MyLayout';
 
-export default () => {
+const DynamicPage: NextPage = () => {
     const router = useRouter();
     return (
         <Layout>
@@ -30,3 +31,5 @@ And here's the content.
         </Layout>
     );
 };
+
+export default DynamicPage;

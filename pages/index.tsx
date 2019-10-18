@@ -1,6 +1,12 @@
+import { NextPage } from 'next';
 import Link from 'next/link';
 
 import Layout from '../components/MyLayout';
+
+interface IPost {
+    id: string;
+    title: string;
+}
 
 function getPosts() {
     return [
@@ -10,7 +16,7 @@ function getPosts() {
     ];
 }
 
-const PostLink = ({ post }) => (
+const PostLink = ({ post }: { post: IPost; }) => (
     <li>
         <Link href="/p/[id]" as={`/p/${post.id}`}>
             <a>{post.title}</a>
@@ -25,21 +31,21 @@ const PostLink = ({ post }) => (
     </li>
 );
 
-export default function Blog() {
-    return (
-        <Layout>
-            <h1>My Blog</h1>
-            <ul>
-                {getPosts().map(post => (
-                    <PostLink key={post.id} post={post} />
-                ))}
-            </ul>
-            <style jsx>
-                {`
-                    h1 { font-family: 'Arial'; }
-                    ul { padding: 0; }
-                `}
-            </style>
-        </Layout>
-    );
-}
+const Blog: NextPage = () => (
+    <Layout>
+        <h1>My Blog</h1>
+        <ul>
+            {getPosts().map((post: IPost) => (
+                <PostLink key={post.id} post={post} />
+            ))}
+        </ul>
+        <style jsx>
+            {`
+                h1 { font-family: 'Arial'; }
+                ul { padding: 0; }
+            `}
+        </style>
+    </Layout>
+);
+
+export default Blog;
